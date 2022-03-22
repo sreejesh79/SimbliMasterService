@@ -1,0 +1,78 @@
+{
+  "name": "express-boilerplate",
+  "version": "1.0.0",
+  "description": "Authentication server for Zenler mobile application.",
+  "main": "dist/server.js",
+  "scripts": {
+    "start": "webpack --watch --config webpack.config.js",
+    "watch": "rm -rf dist && webpack --watch --config webpack.config.js",
+    "build:prod": "webpack --config webpack.config.prod.js",
+    "build": "webpack --config webpack.config.js",
+    "lint": "eslint -c .eslintrc.js --ext .ts ./src",
+    "lint:fix": "eslint -c .eslintrc.js --ext .ts ./src --fix",
+    "precommit-msg": "echo 'Pre-commit checks...' && exit 0",
+    "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js"
+  },
+  "pre-commit": {
+    "run": [
+      "precommit-msg",
+      "lint"
+    ],
+    "silent": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://bitbucket.org/zenlerteam/zenler_mobile_apis.git"
+  },
+  "keywords": [
+    "zenler"
+  ],
+  "author": "Sreejesh R",
+  "license": "MIT",
+  "homepage": "https://bitbucket.org/zenlerteam/zenler_mobile_apis#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.11.0",
+    "@typescript-eslint/parser": "^5.11.0",
+    "eslint": "^8.8.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsdoc": "^37.8.2",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "eslint-webpack-plugin": "^3.1.1",
+    "nodemon": "^2.0.15",
+    "nodemon-webpack-plugin": "^4.7.1",
+    "pre-commit": "^1.2.2",
+    "ts-loader": "^9.2.6",
+    "ts-node": "^10.5.0",
+    "ts-node-dev": "^1.1.8",
+    "tsc-watch": "^4.6.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^4.5.5",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^5.68.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-watch-server": "^1.2.1"
+  },
+  "dependencies": {
+    "@sendgrid/mail": "^7.6.1",
+    "@types/cookie-parser": "^1.4.2",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "bcrypt": "^5.0.1",
+    "config": "^3.3.7",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "directory-import": "^2.3.1",
+    "express": "^4.17.2",
+    "express-winston": "^4.2.0",
+    "firebase-admin": "^10.0.2",
+    "helmet": "^5.0.2",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.7.3",
+    "reflect-metadata": "^0.1.13",
+    "typedi": "^0.10.0",
+    "typeorm": "^0.2.41",
+    "underscore": "^1.13.2",
+    "winston": "^3.6.0"
+  }
+}
