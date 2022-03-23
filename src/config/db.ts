@@ -2,7 +2,11 @@
 import { createConnections, ConnectionOptions, Connection, getConnection } from 'typeorm';
 import { UsersEntity } from '../api/entity/users.entity';
 import { RolesEntity } from '../api/entity/roles.entity';
-import { Logger } from './logger';
+import { ColorsPalleteEntity } from '../api/entity/colorspallete.entity';
+import { BrandingsEntity } from '../api/entity/brandings.entity';
+import { CompaniesEntity } from '../api/entity/companies.entity';
+import { BranchesEntity } from '../api/entity/branches.entity';
+
 class DB {
 
 	public static readonly MASTER_DB_NAME: string = 'postgres';
@@ -19,7 +23,7 @@ class DB {
 			username: process.env.MASTER_DB_USER,
 			password: process.env.MASTER_DB_PASSWORD,
 			database: process.env.MASTER_DATABASE,
-			entities: [UsersEntity, RolesEntity]
+			entities: [UsersEntity, RolesEntity, ColorsPalleteEntity, BrandingsEntity, CompaniesEntity, BranchesEntity]
 		};
 		this._connections = await createConnections( [
 			this._masterDB

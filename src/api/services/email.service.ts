@@ -21,7 +21,7 @@ export class SendGridService  {
 			const response: unknown = await sgMail.send( mailData );
 			return Responses[200]( response );
 		} catch ( e: unknown ) {
-			// console.log(e);
+			// console.log(e)
 			return Responses[500]( e.toString() );
 		}
 	};

@@ -33,7 +33,6 @@ module.exports = {
   new ESLintPlugin({
     files: 'src/**/*.ts',
     emitError: true,
-    failOnWarning: false,
     fix: true
   }),
   new NodemonPlugin()
