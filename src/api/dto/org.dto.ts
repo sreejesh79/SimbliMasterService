@@ -1,5 +1,5 @@
-import { ICompaniesEntity } from "entity/companies.entity";
-import { IUsersEntity } from "entity/users.entity";
+import { ICompaniesEntity } from 'entity/companies.entity';
+import { IUsersEntity } from 'entity/users.entity';
 
 export interface ICompanyDTO {
     url: string;
