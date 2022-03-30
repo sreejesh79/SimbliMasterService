@@ -5,7 +5,7 @@ import { masterDBConnection } from '../../config/db';
 import { CompaniesEntity, ICompaniesEntity } from '../entity/companies.entity';
 import { ICompanyDTO } from 'api/dto/org.dto';
 import { IBaseEntity } from 'entity/baseentity';
-import { BranchesEntity } from 'entity/branches.entity';
+import { OfficesEntity } from 'entity/offices.entity';
 
 @Service()
 export class CompaniesRepository implements IRepository {
@@ -14,10 +14,13 @@ export class CompaniesRepository implements IRepository {
 		return masterDBConnection().getRepository( CompaniesEntity );
 	};
 
-	public save = async ( data: ICompanyDTO, branches: IBaseEntity[] ): Promise<CompaniesEntity> => {
+	public getById = async ( id: number ): Promise<CompaniesEntity> => {
+		const company: CompaniesEntity = await this.getRepository().findOne( { id } );
+		return company;
+	};
+
+	public save = async ( data: ICompanyDTO ): Promise<CompaniesEntity> => {
 		const companyInstance: CompaniesEntity = this.getRepository().create( data );
-		const branchesData: BranchesEntity[] = <BranchesEntity[]>branches;
-		companyInstance.branches = branchesData;
 		const newCompany: CompaniesEntity = await this.getRepository().save( companyInstance );
 		return newCompany;
 	};

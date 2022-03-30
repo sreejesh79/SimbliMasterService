@@ -9,6 +9,7 @@ export interface RouteDefinition {
 export const BASE_PATH: string = '/api/v1';
 export const Middlewares = (): void => {
     require("../api/middlewares/api.middleware");
+    require("../api/middlewares/auth.middleware");
 
 }
 

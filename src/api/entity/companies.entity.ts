@@ -1,13 +1,15 @@
-import { Entity, Column, OneToOne, JoinColumn, OneToMany } from 'typeorm';
+import { Entity, Column, OneToOne, JoinColumn, OneToMany, ManyToMany, JoinTable, ManyToOne } from 'typeorm';
 import { BaseEntity } from './baseentity';
-import { BranchesEntity, IBranchesEntity } from './branches.entity';
+import { OfficesEntity, IOfficesEntity } from './offices.entity';
 import { BrandingsEntity, IBrandingsEntity } from './brandings.entity';
+import { IUsersEntity, UsersEntity } from './users.entity';
+import { CompaniesToUsersEntity } from './companiestousers.entity';
 
 export interface ICompaniesEntity {
     url: string;
     fullname: string;
     pan: string;
-    branches: IBranchesEntity[];
+    offices: IOfficesEntity[];
     branding: IBrandingsEntity
 }
 
@@ -22,11 +24,18 @@ export class CompaniesEntity extends BaseEntity implements ICompaniesEntity {
     @Column( 'varchar' )
     	pan: string;
 
-    @OneToMany( () => BranchesEntity, ( branch ) => branch.company )
-    @JoinColumn()
-    	branches: IBranchesEntity[];
+    @ManyToOne( () => UsersEntity, ( user ) => user.offices )
+    @JoinColumn( { name: 'created_by' } )
+    	createdBy: IUsersEntity;
 
-    @OneToOne( () => BrandingsEntity )
-    @JoinColumn()
+    @OneToMany( () => OfficesEntity, ( office ) => office.company, { eager: true } )
+    @JoinColumn( { name: 'companyId' } )
+    	offices: IOfficesEntity[];
+
+    @OneToOne( () => BrandingsEntity, { eager: true } )
+    @JoinColumn( { name: 'brandingId' } )
     	branding: IBrandingsEntity;
+
+	@OneToMany( () => CompaniesToUsersEntity, ( companiesToUsers ) => companiesToUsers.company )
+    	companiesToUsers: CompaniesToUsersEntity[];
 }

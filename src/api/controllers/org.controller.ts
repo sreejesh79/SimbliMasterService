@@ -5,7 +5,9 @@ import { IBaseEntity } from 'entity/baseentity';
 import { OrgService } from '../services/org.service';
 import { ICompanyDTO } from 'api/dto/org.dto';
 import Responses from '../../config/responses';
-import { Post } from '../../decorators/route.decorator';
+import { Get, Post } from '../../decorators/route.decorator';
+import { IUserDTO } from 'api/dto/users.dto';
+import { IResponse } from 'types';
 
 @Controller( '/org' )
 @Service()
@@ -27,4 +29,14 @@ export class OrgController {
     			next( e );
     		}
     	};
+
+	@Get( '/user/companies' )
+    public getByUser = async ( req: Request, res: Response, next: NextFunction ) => {
+			try {
+				const response: IResponse = await this._orgService.getByUser();
+				return res.status( response.statusCode ).json( response );
+			} catch ( e ) {
+				next( e );
+			}
+		};
 }

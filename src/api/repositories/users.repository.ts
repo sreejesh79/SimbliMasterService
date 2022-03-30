@@ -1,4 +1,4 @@
-import { UsersDTO } from 'api/dto/users.dto';
+import { UsersRegisterDTO } from 'api/dto/users.dto';
 import { Service } from 'typedi';
 import { Repository } from 'typeorm';
 import { masterDBConnection } from '../../config/db';
@@ -23,7 +23,7 @@ export class UsersRepository implements IRepository {
 		return user;
 	};
 
-	public save = async ( data: UsersDTO ): Promise<UsersEntity> => {
+	public save = async ( data: UsersRegisterDTO ): Promise<UsersEntity> => {
 		const user: UsersEntity = await this.getRepository().save( data );
 		return user;
 	};

@@ -1,17 +1,31 @@
+import { ICompaniesEntity } from "entity/companies.entity";
+import { IUsersEntity } from "entity/users.entity";
+
 export interface ICompanyDTO {
     url: string;
     fullname: string;
     pan: string;
-    branches: IBranchDTO[]
+    offices: IOfficeDTO[],
+    createdBy?: IUsersEntity;
+
 }
 
-export interface IBranchDTO {
+export interface IOfficeDTO {
     name?: string;
-    branchAddress: string;
+    officeAddress: string;
+    gstNo: string;
     gstAddress: string;
+    createdBy: IUsersEntity;
+    company: ICompaniesEntity;
 }
 
 export interface IBrandingDTO {
     logo: string;
     colorId?: number;
+}
+
+export interface ICompanyToUsersDTO {
+    companiesId?: number;
+    usersId: number;
+    rolesId: number;
 }
