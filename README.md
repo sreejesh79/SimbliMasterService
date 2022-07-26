@@ -1,7 +1,7 @@
 # SimbliMasterService
 Micro service for the admin side  business solution
 ## To Install
-Install Docker
+Install Docker<br/>
 yarn
 ## To Run in Development Mode
 yarn start
